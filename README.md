@@ -1,2 +1,11 @@
 # my-nvim
 My Simple on the go nvim config
+
+```bash
+git clone https://github.com/NvChad/starter ~/.config/nvim && nvim
+```
+
+```vim
+:MasonInstallAll
+:TSUpdateSync
+```
