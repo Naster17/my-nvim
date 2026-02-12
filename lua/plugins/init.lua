@@ -10,6 +10,11 @@ return {
   --   config = "configs.platformio",
   -- },
   {
+    "mrcjkb/rustaceanvim",
+    version = "^7", -- Recommended
+    lazy = false, -- This plugin is already lazy
+  },
+  {
     "ggml-org/llama.vim",
     lazy = false,
     priority = 1000,
@@ -17,7 +22,7 @@ return {
       vim.g.llama_config = {
         auto_fim = false,
         show_info = 1,
-        endpoint = "http://192.168.1.104:4444/infill",
+        endpoint_fim = "http://192.168.1.104:8080/infill",
         -- model = "",
         -- t_max_prompt_ms = 1000, -- not supported
         n_prefix = 256,
@@ -27,10 +32,10 @@ return {
         max_cache_keys = 250, -- default 250
         enable_at_startup = false,
         ring_update_ms = 1000,
-        keymap_trigger = "<C-F>",
-        keymap_accept_full = "<Enter>",
-        keymap_accept_line = "<C-G>",
-        keymap_accept_word = "<C-B>",
+        keymap_fim_trigger = "<C-F>",
+        keymap_fim_accept_full = "<Enter>",
+        keymap_fim_accept_line = "<C-G>",
+        keymap_fim_accept_word = "<C-B>",
       }
     end,
   },
