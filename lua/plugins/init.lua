@@ -128,6 +128,8 @@ return {
         "tmux",
         "xml",
         "yaml",
+        "qmljs",
+        "qml"
       },
       sync_install = false,
       auto_install = true,

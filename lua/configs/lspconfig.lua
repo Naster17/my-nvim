@@ -20,6 +20,7 @@ require("nvchad.configs.lspconfig").defaults()
 -- vim.lsp.config('clangd', {cmd = {"clangd"}})
 vim.lsp.enable("clangd", true)
 vim.lsp.enable("rust-analyzer", true)
+vim.lsp.enable("qmlls", true)
 
 vim.lsp.config("pylsp", {
   settings = {
