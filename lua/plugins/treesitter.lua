@@ -27,6 +27,7 @@ return {
         "doxygen",
         "http",
         "html",
+        "css",
         "json",
         "git_config",
         "git_rebase",
