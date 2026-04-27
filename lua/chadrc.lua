@@ -14,6 +14,23 @@ M.base46 = {
 	-- },
 }
 
+M.mason = {
+  pkgs = {
+    "stylua",
+    "prettier",
+    "html-lsp",
+    "css-lsp",
+    "json-lsp",
+    "lua-language-server",
+    "codelldb",
+    "rust-analyzer",
+    "clangd",
+    "clang-format",
+    "python-lsp-server",
+    "typescript-language-server",
+  },
+}
+
 -- M.nvdash = { load_on_startup = true }
 -- M.ui = {
 --       tabufline = {

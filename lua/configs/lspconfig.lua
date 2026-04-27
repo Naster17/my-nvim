@@ -34,12 +34,10 @@ vim.lsp.config("cssls", {
 vim.lsp.enable "cssls"
 
 -- JS/TS
-vim.lsp.config("typescript", {
-  cmd = { "typescript-language-server", "--stdio" },
-  filetypes = { "javascript", "javascriptreact", "typescript", "typescriptreact" },
+vim.lsp.config("ts_ls", {
   capabilities = capabilities,
 })
-vim.lsp.enable "typescript"
+vim.lsp.enable "ts_ls"
 
 -- JSON
 vim.lsp.config("jsonls", {
@@ -47,9 +45,9 @@ vim.lsp.config("jsonls", {
 })
 vim.lsp.enable "jsonls"
 
-vim.lsp.enable("clangd", true)
-vim.lsp.enable("rust-analyzer", true)
-vim.lsp.enable("qmlls", true)
+vim.lsp.enable "clangd"
+vim.lsp.enable "rust_analyzer"
+vim.lsp.enable "qmlls"
 
 vim.lsp.config("pylsp", {
   settings = {
@@ -79,24 +77,30 @@ vim.lsp.config("lua_ls", {
     },
   },
 })
+vim.lsp.enable "lua_ls"
 
 require("mason").setup()
--- Note: `nvim-lspconfig` needs to be in 'runtimepath' by the time you set up mason-lspconfig.nvim
-require("mason").setup {
-  ensure_installed = {
-    "prettier",
-    "html-lsp",
-    "cssls",
-    "json-lsp",
-    "lua_ls",
-    "codelldb",
-    "rust-analyzer",
-    "clangd",
-    "clang-format",
-    "python-lsp-server",
-    "typescript-language-server",
-  },
-}
+
+vim.api.nvim_create_autocmd("User", {
+  pattern = "VeryLazy",
+  once = true,
+  callback = function()
+    local ok, registry = pcall(require, "mason-registry")
+    if not ok then
+      return
+    end
+
+    registry.refresh(function()
+      for _, name in ipairs(require("nvconfig").mason.pkgs or {}) do
+        local pkg_ok, pkg = pcall(registry.get_package, name)
+
+        if pkg_ok and not pkg:is_installed() then
+          pkg:install()
+        end
+      end
+    end)
+  end,
+})
 
 -- configuring single server, example: typescript
 -- lspconfig.ts_ls.setup {
