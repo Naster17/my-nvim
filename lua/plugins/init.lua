@@ -13,32 +13,56 @@ return {
     "mrcjkb/rustaceanvim",
     version = "^7", -- Recommended
     lazy = false, -- This plugin is already lazy
-  },
-  {
-    "ggml-org/llama.vim",
-    lazy = false,
-    priority = 1000,
     init = function()
-      vim.g.llama_config = {
-        auto_fim = false,
-        show_info = 1,
-        endpoint_fim = "http://192.168.1.104:8080/infill",
-        -- model = "",
-        -- t_max_prompt_ms = 1000, -- not supported
-        n_prefix = 256,
-        n_suffix = 64,
-        t_max_predict_ms = 5000,
-        n_predict = 512, -- default 128
-        max_cache_keys = 250, -- default 250
-        enable_at_startup = false,
-        ring_update_ms = 1000,
-        keymap_fim_trigger = "<C-F>",
-        keymap_fim_accept_full = "<Enter>",
-        keymap_fim_accept_line = "<C-G>",
-        keymap_fim_accept_word = "<C-B>",
+      vim.g.rustaceanvim = {
+        server = {
+          default_settings = {
+            ["rust-analyzer"] = {
+              cargo = { allTargets = true },
+              check = { command = "clippy" },
+            },
+          },
+        },
       }
     end,
   },
+  {
+    "saecki/crates.nvim",
+    event = { "BufRead Cargo.toml" },
+    opts = {
+      lsp = {
+        enabled = true,
+        actions = true,
+        completion = true,
+        hover = true,
+      },
+    },
+  },
+  -- {
+  --   "ggml-org/llama.vim",
+  --   lazy = false,
+  --   priority = 1000,
+  --   init = function()
+  --     vim.g.llama_config = {
+  --       auto_fim = false,
+  --       show_info = 1,
+  --       endpoint_fim = "http://192.168.1.104:8080/infill",
+  --       -- model = "",
+  --       -- t_max_prompt_ms = 1000, -- not supported
+  --       n_prefix = 256,
+  --       n_suffix = 64,
+  --       t_max_predict_ms = 5000,
+  --       n_predict = 512, -- default 128
+  --       max_cache_keys = 250, -- default 250
+  --       enable_at_startup = false,
+  --       ring_update_ms = 1000,
+  --       keymap_fim_trigger = "<C-F>",
+  --       keymap_fim_accept_full = "<Enter>",
+  --       keymap_fim_accept_line = "<C-G>",
+  --       keymap_fim_accept_word = "<C-B>",
+  --     }
+  --   end,
+  -- },
   {
     "mbbill/undotree",
     lazy = false,

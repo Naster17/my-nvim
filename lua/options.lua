@@ -7,7 +7,7 @@ opt.number = true
 opt.relativenumber = true
 
 -- opt.clipboard:append "unnamedplus" -- use system clipboard
-opt.clipboard = 'unnamedplus'
+opt.clipboard = "unnamedplus"
 
 opt.ignorecase = true
 opt.smartcase = true

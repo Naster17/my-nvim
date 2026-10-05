@@ -19,35 +19,29 @@ require("nvchad.configs.lspconfig").defaults()
 
 -- vim.lsp.config('clangd', {cmd = {"clangd"}})
 
---HTML
-local capabilities = vim.lsp.protocol.make_client_capabilities()
-capabilities.textDocument.completion.completionItem.snippetSupport = true
-vim.lsp.config("html", {
-  capabilities = capabilities,
-})
-vim.lsp.enable("html", true)
-
--- CSS
-vim.lsp.config("cssls", {
-  capabilities = capabilities,
-})
+vim.lsp.enable "html"
 vim.lsp.enable "cssls"
-
--- JS/TS
-vim.lsp.config("ts_ls", {
-  capabilities = capabilities,
-})
 vim.lsp.enable "ts_ls"
-
--- JSON
-vim.lsp.config("jsonls", {
-  capabilities = capabilities,
-})
 vim.lsp.enable "jsonls"
 
+vim.lsp.config("clangd", {
+  cmd = {
+    "clangd",
+    "--background-index",
+    "--clang-tidy",
+    "--header-insertion=iwyu",
+    "--completion-style=detailed",
+    "--function-arg-placeholders",
+    "--fallback-style=llvm",
+  },
+})
 vim.lsp.enable "clangd"
-vim.lsp.enable "rust_analyzer"
-vim.lsp.enable "qmlls"
+
+-- rust_analyzer is managed by rustaceanvim, do not enable it here
+
+if vim.fn.executable "qmlls" == 1 then
+  vim.lsp.enable "qmlls"
+end
 
 vim.lsp.config("pylsp", {
   settings = {
@@ -79,7 +73,7 @@ vim.lsp.config("lua_ls", {
 })
 vim.lsp.enable "lua_ls"
 
-require("mason").setup()
+require("mason").setup(require "nvchad.configs.mason")
 
 vim.api.nvim_create_autocmd("User", {
   pattern = "VeryLazy",
