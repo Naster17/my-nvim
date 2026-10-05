@@ -7,7 +7,9 @@ return {
       { "nvim-telescope/telescope.nvim" },
       { "nvim-lua/plenary.nvim" },
     },
-    config = "configs.platformio",
+    config = function()
+      require("platformio").setup {}
+    end,
   },
   {
     "mrcjkb/rustaceanvim",
