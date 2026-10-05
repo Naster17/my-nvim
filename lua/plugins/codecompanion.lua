@@ -7,6 +7,9 @@ return {
     {
       "MeanderingProgrammer/render-markdown.nvim",
       ft = { "markdown", "codecompanion" },
+      opts = {
+        anti_conceal = { enabled = false },
+      },
     },
   },
   cmd = {
@@ -35,6 +38,13 @@ return {
                 default = "llama-cpp",
                 choices = { "llama-cpp" },
               },
+            },
+            handlers = {
+              form_messages = function(self, messages)
+                local openai = require("codecompanion.adapters.http.openai")
+                local adapter_utils = require("codecompanion.adapters.utils")
+                return openai.handlers.form_messages(self, adapter_utils.merge_system_messages(messages))
+              end,
             },
             opts = {
               vision = false,

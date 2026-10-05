@@ -1,14 +1,14 @@
 return {
-  -- {
-  --   "anurag3301/nvim-platformio.lua",
-  --   lazy = false,
-  --   dependencies = {
-  --     { "akinsho/nvim-toggleterm.lua" },
-  --     { "nvim-telescope/telescope.nvim" },
-  --     { "nvim-lua/plenary.nvim" },
-  --   },
-  --   config = "configs.platformio",
-  -- },
+  {
+    "anurag3301/nvim-platformio.lua",
+    lazy = false,
+    dependencies = {
+      { "akinsho/nvim-toggleterm.lua" },
+      { "nvim-telescope/telescope.nvim" },
+      { "nvim-lua/plenary.nvim" },
+    },
+    config = "configs.platformio",
+  },
   {
     "mrcjkb/rustaceanvim",
     version = "^7", -- Recommended
