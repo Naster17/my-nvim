@@ -75,25 +75,29 @@ vim.lsp.enable "lua_ls"
 
 require("mason").setup(require "nvchad.configs.mason")
 
+local function mason_install_all()
+  local ok, registry = pcall(require, "mason-registry")
+  if not ok then
+    return
+  end
+
+  registry.refresh(function()
+    for _, name in ipairs(require("nvconfig").mason.pkgs or {}) do
+      local pkg_ok, pkg = pcall(registry.get_package, name)
+
+      if pkg_ok and not pkg:is_installed() then
+        pkg:install()
+      end
+    end
+  end)
+end
+
+vim.api.nvim_create_user_command("MasonInstallAll", mason_install_all, { desc = "Install all Mason packages" })
+
 vim.api.nvim_create_autocmd("User", {
   pattern = "VeryLazy",
   once = true,
-  callback = function()
-    local ok, registry = pcall(require, "mason-registry")
-    if not ok then
-      return
-    end
-
-    registry.refresh(function()
-      for _, name in ipairs(require("nvconfig").mason.pkgs or {}) do
-        local pkg_ok, pkg = pcall(registry.get_package, name)
-
-        if pkg_ok and not pkg:is_installed() then
-          pkg:install()
-        end
-      end
-    end)
-  end,
+  callback = mason_install_all,
 })
 
 -- configuring single server, example: typescript

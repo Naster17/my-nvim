@@ -42,6 +42,7 @@ return {
         "gitignore",
         "gitattributes",
         "ruby",
+        "qmljs",
         "sql",
         "ssh_config",
         "tmux",
