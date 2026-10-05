@@ -1,0 +1,64 @@
+return {
+  "olimorris/codecompanion.nvim",
+  version = false,
+  dependencies = {
+    "nvim-lua/plenary.nvim",
+    "nvim-treesitter/nvim-treesitter",
+    {
+      "MeanderingProgrammer/render-markdown.nvim",
+      ft = { "markdown", "codecompanion" },
+    },
+  },
+  cmd = {
+    "CodeCompanion",
+    "CodeCompanionChat",
+    "CodeCompanionActions",
+  },
+  keys = {
+    { "<leader>aa", "<cmd>CodeCompanionChat Toggle<cr>", mode = { "n", "v" }, desc = "CodeCompanion chat" },
+    { "<leader>an", "<cmd>CodeCompanionChat<cr>", mode = { "n", "v" }, desc = "CodeCompanion new chat" },
+    { "<leader>ap", "<cmd>CodeCompanionActions<cr>", mode = { "n", "v" }, desc = "CodeCompanion actions" },
+    { "ga", "<cmd>CodeCompanionChat Add<cr>", mode = "v", desc = "Add selection to chat" },
+  },
+  opts = {
+    adapters = {
+      http = {
+        llama_cpp = function()
+          return require("codecompanion.adapters").extend("openai_compatible", {
+            formatted_name = "llama.cpp",
+            env = {
+              url = "http://192.168.1.104:8080",
+              api_key = "llama-cpp",
+            },
+            schema = {
+              model = {
+                default = "llama-cpp",
+                choices = { "llama-cpp" },
+              },
+            },
+            opts = {
+              vision = false,
+            },
+          })
+        end,
+      },
+    },
+    interactions = {
+      chat = {
+        adapter = "llama_cpp",
+      },
+      inline = {
+        adapter = "llama_cpp",
+      },
+    },
+    display = {
+      chat = {
+        window = {
+          layout = "vertical",
+          position = "right",
+          width = 0.30,
+        },
+      },
+    },
+  },
+}
