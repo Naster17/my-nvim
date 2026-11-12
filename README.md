@@ -1,4 +1,5 @@
 # my-nvim
+Do not forget install and use "Nerd Font" :)
 
 System prerequisites: `git`, `curl`, `tar`, a C compiler, `node`, `python3`, `ripgrep`, Rust toolchain (`cargo`), and `tree-sitter` CLI >= 0.26.1.
 Missing tools are reported on demand (when you open a file that needs them); `:DepsCheck` lists everything at once.
