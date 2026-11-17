@@ -1,16 +1,16 @@
 return {
-  {
-    "anurag3301/nvim-platformio.lua",
-    lazy = false,
-    dependencies = {
-      { "akinsho/nvim-toggleterm.lua" },
-      { "nvim-telescope/telescope.nvim" },
-      { "nvim-lua/plenary.nvim" },
-    },
-    config = function()
-      require("platformio").setup {}
-    end,
-  },
+  -- {
+  --   "anurag3301/nvim-platformio.lua",
+  --   lazy = false,
+  --   dependencies = {
+  --     { "akinsho/nvim-toggleterm.lua" },
+  --     { "nvim-telescope/telescope.nvim" },
+  --     { "nvim-lua/plenary.nvim" },
+  --   },
+  --   config = function()
+  --     require("platformio").setup {}
+  --   end,
+  -- },
   {
     "mrcjkb/rustaceanvim",
     version = "^7", -- Recommended
@@ -48,7 +48,7 @@ return {
   --     vim.g.llama_config = {
   --       auto_fim = false,
   --       show_info = 1,
-  --       endpoint_fim = "http://192.168.1.104:8080/infill",
+  --       endpoint_fim = "http://bc250.int:8080/infill",
   --       -- model = "",
   --       -- t_max_prompt_ms = 1000, -- not supported
   --       n_prefix = 256,

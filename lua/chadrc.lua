@@ -5,6 +5,8 @@
 ---@type ChadrcConfig
 local M = {}
 
+local statusline = require "configs.statusline"
+
 M.base46 = {
   theme = "material-deep-ocean",
 
@@ -12,6 +14,15 @@ M.base46 = {
   -- 	Comment = { italic = true },
   -- 	["@comment"] = { italic = true },
   -- },
+}
+
+M.ui = {
+  statusline = {
+    modules = {
+      codecompanion = statusline.codecompanion,
+    },
+    order = { "mode", "file", "git", "codecompanion", "%=", "lsp_msg", "%=", "diagnostics", "lsp", "cwd", "cursor" },
+  },
 }
 
 M.mason = {

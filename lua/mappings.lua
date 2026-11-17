@@ -7,6 +7,9 @@ local map = vim.keymap.set
 map("n", ";", ":", { desc = "CMD enter command mode" })
 map("i", "jk", "<ESC>")
 
+map({ "n", "v" }, "<leader>ai", ":CodeCompanion<CR>", { desc = "CodeCompanion inline" })
+map("n", "<leader>ar", "<cmd>CodeCompanionCodeReview<cr>", { desc = "CodeCompanion code review" })
+
 -- Antigay
 vim.keymap.set("n", "<left>", '<cmd>echo "Use h to move!!"<CR>')
 vim.keymap.set("n", "<right>", '<cmd>echo "Use l to move!!"<CR>')
